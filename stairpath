@@ -1,0 +1,32 @@
+import java.util.*;
+public class Solution {
+
+	public static long staircase(int n) {
+	 long a[]= new long[n+1];
+        return printstairs(n,a);
+        
+	}
+    public static long printstairs(int n,long a[])
+    {
+        if(n==0 )
+	  {
+	    return 1;
+	  }
+	  else if(n<0)
+	  {
+	    return 0;
+	  }
+	  if(a[n]>0)
+	  {
+	    return a[n];
+	  }
+	   // System.out.print("print"+" ");
+	  long n1=printstairs(n-1,a);
+	  long n2=printstairs(n-2,a);
+	  long n3=printstairs(n-3,a);
+	  long sum=n1+n2+n3;
+	   a[n]=sum;
+	  return sum;
+    }
+
+}
