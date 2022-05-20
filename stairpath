@@ -8,6 +8,8 @@ public class Solution {
 	}
     public static long printstairs(int n,long a[])
     {
+    BASE CASE
+    
         if(n==0 )
 	  {
 	    return 1;
@@ -16,16 +18,24 @@ public class Solution {
 	  {
 	    return 0;
 	  }
+    MEMOAISATION
+	  
 	  if(a[n]>0)
 	  {
 	    return a[n];
 	  }
-	   // System.out.print("print"+" ");
+    RECURSIVE CALL
+	   
 	  long n1=printstairs(n-1,a);
 	  long n2=printstairs(n-2,a);
 	  long n3=printstairs(n-3,a);
 	  long sum=n1+n2+n3;
+	  
+    PUT IN ARRAY
+	  
 	   a[n]=sum;
+	   
+	   
 	  return sum;
     }
 
