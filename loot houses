@@ -1,0 +1,31 @@
+import java.util.*;
+public class Solution {
+
+	public static int maxMoneyLooted(int[] houses) {
+        
+        int dp[]=new int[houses.length+1];
+		return helper(houses,houses.length-1,dp);
+        
+        }
+    public static int helper(int[] a,int i,int dp[])
+    {
+       if(i<0)
+       {
+           return 0;
+       }
+        if(i==0)
+        {
+            return a[0];
+        }
+        if(dp[i]>0)
+        {
+            return dp[i];
+        }
+       
+            int include=a[i]+helper(a,i-2,dp);
+            int dinclude=helper(a,i-1,dp);
+       return  dp[i]=Math.max(include,dinclude);
+    }
+        
+	}
+
