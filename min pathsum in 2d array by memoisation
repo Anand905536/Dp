@@ -1,0 +1,26 @@
+import java.util.*;
+public class Solution {
+    public static int f(int i,int j,int[][] a,int[][] dp)
+    {
+        if(i==0 && j==0)return a[i][j];
+        if(i<0 || j<0) return (int)Math.pow(10,9);
+        if(dp[i][j]!=-1)
+        {
+            return dp[i][j];
+        }
+        int up=a[i][j]+f(i-1,j,a,dp);
+        int left=a[i][j]+f(i,j-1,a,dp);
+        int ans=Math.min(up,left);
+        return dp[i][j]=ans;
+    }
+    public static int minSumPath(int[][] grid) {
+    	int m=grid.length;
+        int n=grid[0].length;
+        int dp[][]=new int[m][n];
+        for(int rows[]:dp)
+        {
+            Arrays.fill(rows,-1);
+        }
+        return f(m-1,n-1,grid,dp);
+    }
+}
