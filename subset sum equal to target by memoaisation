@@ -1,0 +1,39 @@
+import java.util.*;
+public class Solution {
+    public static boolean f(int ind,int target,int a[],int dp[][])
+    {
+        if(target==0)
+        {
+           return true;
+        }
+        if(ind==0)
+        {
+            if(a[ind]==target)
+                return true;
+            else{
+                return false;
+            }
+//             return a[ind]==target;
+        }
+        if(dp[ind][target]!=-1)
+        {
+            return dp[ind][target]==0?false:true;
+        }
+        boolean taken=false;
+        if(a[ind]<=target)
+        {
+            taken=f(ind-1,target-a[ind],a,dp);
+        }
+        boolean nottaken=f(ind-1,target,a,dp);
+        dp[ind][target]=nottaken||taken?1:0;
+        return taken||nottaken;
+    }
+    public static boolean subsetSumToK(int n, int k, int arr[]){
+        int dp[][]=new int[n][k+1];
+        for(int rows[]:dp)
+        {
+            Arrays.fill(rows,-1);
+        }
+        return f(n-1,k,arr,dp);
+    }
+}
