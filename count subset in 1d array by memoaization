@@ -1,0 +1,36 @@
+import java.util.*;
+public class Solution {
+    public static int findWays(int num[], int tar)
+    {
+        int n=num.length;
+        int dp[][]=new int[n][tar+1];
+        for(int rows[]:dp)
+        {
+            Arrays.fill(rows,-1);
+        }
+        return f(n-1,tar,num,dp);
+    }
+    public static int f(int ind,int target,int a[],int dp[][])
+    {
+        if(target==0)return 1;
+       if(ind == 0){
+           if(a[ind]==target)
+           {
+               return 1;
+           }
+           else{
+               return 0;
+           }
+          }
+       if(dp[ind][target]!=-1)
+        return dp[ind][target];
+        
+    int notTaken = f(ind-1,target,a,dp);
+    
+    int taken = 0;
+    if(a[ind]<=target)
+        taken = f(ind-1,target-a[ind],a,dp);
+        
+    return dp[ind][target]= notTaken + taken;
+    }   
+}
