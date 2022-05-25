@@ -1,0 +1,45 @@
+import java.util.*;
+public class Solution {
+    public static int f(int ind,int target,int[] a,int[][] dp)
+    {
+    
+    BASE CASE
+    
+          if(ind==0)
+        {
+            if(target%a[ind]==0)return target/a[ind];
+            else return (int)1e9 ;
+        }
+        
+    MEMOAIZATION
+    
+        if(dp[ind][target]!=-1)
+        return dp[ind][target];
+        
+    RECURSIVE CALL TAKE AND NOT TAKE 
+        
+        int nottaken=0+f(ind-1,target,a,dp);
+        int taken=(int)1e9;
+        if(target>=a[ind])
+        taken=1+f(ind,target-a[ind],a,dp);
+        
+        
+     INSERTION IN DP AND RETURN IT
+        
+         return dp[ind][target]=Math.min(taken,nottaken);
+    }
+    public static int minimumElements(int num[], int x) {
+        int n=num.length;
+        int dp[][]=new int[n][x+1];
+        for(int a[]:dp)
+        {
+            Arrays.fill(a,-1);
+        }
+       int ans=f(n-1,x,num,dp);
+        if(ans==(int)1e9)return -1;
+        else return ans;
+         
+
+    }
+
+}
