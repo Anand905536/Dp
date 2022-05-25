@@ -12,15 +12,10 @@ public class Solution {
     }
     public static int f(int ind,int target,int a[],int dp[][])
     {
-        if(target==0)return 1;
-       if(ind == 0){
-           if(a[ind]==target)
-           {
-               return 1;
-           }
-           else{
-               return 0;
-           }
+        if(ind == 0){
+         if(target==0 && a[ind]==0)return 2;
+           if(target==0 || a[ind]==target)return 1;
+           else  return 0;
           }
        if(dp[ind][target]!=-1)
         return dp[ind][target];
