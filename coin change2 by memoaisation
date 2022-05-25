@@ -1,0 +1,33 @@
+
+import java.util.*;
+public class Solution {
+    
+    public static long f(int ind,int target,int[] a,long[][] dp)
+    {
+        if(ind==0)
+        {
+            if(target%a[0]==0)return 1;
+            else return 0 ;
+        }
+        
+        if(dp[ind][target]!=-1)
+        return dp[ind][target];
+        
+        long nottaken=f(ind-1,target,a,dp);
+        
+        long taken=0;
+        if(a[ind]<=target)
+        taken=f(ind,target-a[ind],a,dp);
+    
+         return dp[ind][target]=taken+nottaken;
+  }
+	public static long countWaysToMakeChange(int denominations[], int value){
+         int n=denominations.length;
+        long dp[][]=new long[n][value+1];
+        for(long rows[]:dp)
+        {
+            Arrays.fill(rows,-1);
+        }
+        return f(n-1,value,denominations,dp);
+    }	
+}
