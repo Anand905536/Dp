@@ -1,0 +1,36 @@
+public class Solution {
+     public static int f(int ind,int N,int[] a,int[][] dp)
+    {
+    
+    BASECASE-
+    
+        if(ind==0)
+        {
+         return N*a[ind];
+        }
+        
+    MEMOAIZATION-
+    
+        if(dp[ind][N]!=-1)
+            return dp[ind][N];
+        
+    RECUSRSIVE CALLS-
+    
+        int nottaken=0+f(ind-1,N,a,dp);
+        int taken=Integer.MIN_VALUE;
+         int rodlength=ind+1;
+        if(rodlength<=N)
+        taken=a[ind]+f(ind,N-rodlength,a,dp);
+        
+        
+        return dp[ind][N]=Math.max(nottaken,taken);
+    }
+    
+	public static int cutRod(int price[], int n) {
+		int ind=price.length;
+        int[][] dp=new int[ind][n+1];
+        for(int []rows:dp)
+            Arrays.fill(rows,-1);
+        return f(ind-1,n,price,dp);
+	}
+}
